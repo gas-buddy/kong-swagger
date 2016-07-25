@@ -1,0 +1,90 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0",
+        "description": "A Swagger definition for the Kong OAuth Plugin API on the public endpoint",
+        "title": "Kong-OAuth"
+    },
+    "basePath": "/your-api-goes-here",
+    "consumes": [
+        "application/x-www-form-urlencoded"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "schemes": [
+        "https"
+    ],
+    "paths": {
+        "/oauth2/token": {
+            "post": {
+                "operationId": "token",
+                "tags": [
+                    "auth"
+                ],
+                "parameters": [
+                    {
+                        "name": "grant_type",
+                        "required": true,
+                        "type": "string",
+                        "in": "formData"
+                    },
+                    {
+                        "name": "client_id",
+                        "required": true,
+                        "type": "string",
+                        "in": "formData"
+                    },
+                    {
+                        "name": "client_secret",
+                        "type": "string",
+                        "in": "formData",
+                        "required": false
+                    },
+                    {
+                        "name": "scope",
+                        "type": "string",
+                        "in": "formData",
+                        "required": false
+                    },
+                    {
+                        "name": "provision_key",
+                        "type": "string",
+                        "in": "formData",
+                        "required": false
+                    },
+                    {
+                        "name": "authenticated_userid",
+                        "type": "string",
+                        "in": "formData",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The token was created",
+                        "schema": {
+                            "$ref": "#/definitions/TokenInfo"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "TokenInfo": {
+            "type": "object",
+            "properties": {
+                "refresh_token": {
+                    "type": "string"
+                },
+                "token_type": {
+                    "type": "string"
+                },
+                "access_token": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

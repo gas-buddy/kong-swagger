@@ -1,0 +1,19 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0",
+        "description": "A Swagger definition for the Kong Admin API",
+        "title": "Kong-Admin"
+    },
+    "basePath": "/",
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+    },
+    "definitions": {
+    }
+}
