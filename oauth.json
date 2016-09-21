@@ -58,6 +58,12 @@
                         "type": "string",
                         "in": "formData",
                         "required": false
+                    },
+                    {
+                        "name": "auth_context_id",
+                        "type": "string",
+                        "in": "formData",
+                        "required": false
                     }
                 ],
                 "responses": {
