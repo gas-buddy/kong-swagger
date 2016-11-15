@@ -1,6 +1,6 @@
 {
   "name": "kong-swagger",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A Swagger definition for Kong endpoints",
   "main": "admin.json",
   "repository": {
