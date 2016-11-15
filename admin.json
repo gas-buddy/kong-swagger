@@ -13,7 +13,55 @@
         "application/json"
     ],
     "paths": {
-    },
-    "definitions": {
+        "/oauth2_tokens/{token}": {
+            "parameters": [
+                {
+                    "name": "token",
+                    "in": "path",
+                    "type": "string",
+                    "required": true
+                }
+            ],
+            "get": {
+                "description": "Lookup an oauth2 token",
+                "responses": {
+                    "200": {
+                        "description": "The token was found",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "expires_in": {
+                                    "type": "integer"
+                                },
+                                "authenticated_userid": {
+                                    "type": "string"
+                                },
+                                "id": {
+                                    "type": "string"
+                                },
+                                "credential_id": {
+                                    "type": "string"
+                                },
+                                "created_at": {
+                                    "type": "integer"
+                                },
+                                "refresh_token": {
+                                    "type": "string"
+                                },
+                                "token_type": {
+                                    "type": "string"
+                                },
+                                "access_token": {
+                                    "type": "string"
+                                },
+                                "scope": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
