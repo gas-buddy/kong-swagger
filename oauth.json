@@ -60,6 +60,12 @@
                         "required": false
                     },
                     {
+                        "name": "refresh_token",
+                        "type": "string",
+                        "in": "formData",
+                        "required": false
+                    },
+                    {
                         "name": "auth_context_id",
                         "type": "string",
                         "in": "formData",
@@ -81,6 +87,9 @@
         "TokenInfo": {
             "type": "object",
             "properties": {
+                "expires": {
+                    "type": "number"
+                },
                 "refresh_token": {
                     "type": "string"
                 },
