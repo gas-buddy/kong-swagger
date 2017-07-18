@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "version": "1.0",
+        "version": "1.1.1",
         "description": "A Swagger definition for the Kong OAuth Plugin API on the public endpoint",
         "title": "Kong-OAuth"
     },
@@ -16,6 +16,54 @@
         "https"
     ],
     "paths": {
+        "/oauth2/authorize": {
+            "post": {
+                "operationId": "authorize",
+                "tags": [
+                    "auth"
+                ],
+                "parameters": [
+                    {
+                        "name": "client_id",
+                        "required": true,
+                        "type": "string",
+                        "in": "formData"
+                    },
+                    {
+                        "name": "scope",
+                        "type": "string",
+                        "in": "formData",
+                        "required": false
+                    },
+                    {
+                        "name": "authenticated_userid",
+                        "type": "string",
+                        "in": "formData",
+                        "required": false
+                    },
+                    {
+                        "name": "provision_key",
+                        "type": "string",
+                        "in": "formData",
+                        "required": false
+                    },
+                    {
+                        "name": "response_type",
+                        "type": "string",
+                        "in": "formData",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The authCode was created",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
         "/oauth2/token": {
             "post": {
                 "operationId": "token",
