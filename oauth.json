@@ -118,6 +118,18 @@
                         "type": "string",
                         "in": "formData",
                         "required": false
+                    },
+                    {
+                        "name": "code",
+                        "type": "string",
+                        "in": "formData",
+                        "required": false
+                    },
+                    {
+                        "name": "redirect_uri",
+                        "type": "string",
+                        "in": "formData",
+                        "required": false
                     }
                 ],
                 "responses": {
