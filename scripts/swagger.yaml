@@ -1,0 +1,189 @@
+---
+swagger: '2.0'
+info:
+  version: 1.1.0
+  description: A Swagger definition for the Kong Admin API
+  title: Kong-Admin
+basePath: "/"
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+  "/consumers":
+    post:
+      parameters:
+      - in: body
+        name: ConsumerInput
+        description: "ConsumerInput"
+        required: true
+        schema:
+          $ref: '#/definitions/Consumer'
+      description: Create a consumer
+      responses:
+        '200':
+          description: Consumer was created
+    delete:
+      parameters:
+      - in: body
+        name: ConsumerInput
+        description: "ConsumerInput"
+        required: true
+        schema:
+          $ref: '#/definitions/Consumer'
+      description: Delete a consumer
+      responses:
+        '204':
+          description: Consumer was deleted
+  "/consumers/{consumer_id}":
+    parameters:
+    - name: consumer_id
+      in: path
+      type: string
+      required: true
+    get:
+      description: Get details about a consumer
+      responses:
+        '200':
+          description: Consumer was found
+          schema:
+            $ref: '#/definitions/Consumer'
+        '404':
+          description: No such consumer found
+  "/consumers/{consumer_id}/key-auth":
+    parameters:
+    - name: consumer_id
+      in: path
+      type: string
+      required: true
+    post:
+      description: Create an API Key
+      responses:
+        '201':
+          description: Created an API Key
+          schema:
+            $ref: '#/definitions/APIKey'
+    get:
+      description: List API Keys
+      responses:
+        '200':
+          description: list of api keys
+          schema:
+            type: object
+            properties:
+              total:
+                type: integer
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/APIKey'
+  "/consumers/{consumer_id}/key-auth/{apikey_id}":
+    parameters:
+    - name: consumer_id
+      in: path
+      type: string
+      required: true
+    - name: apikey_id
+      in: path
+      type: string
+      required: true
+    delete:
+      description: Delete an API Key
+      responses:
+        '204':
+          description: Deleted an API Key
+
+  "/oauth2":
+    get:
+      parameters:
+      - name: client_id
+        in: query
+        type: string
+        required: true
+      responses:
+        '200':
+          description: The client was found
+          schema:
+            type: object
+            properties:
+              total:
+                type: integer
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    consumer_id:
+                      type: string
+                    client_id:
+                      type: string
+                    id:
+                      type: string
+                    created_at:
+                      type: integer
+                    name:
+                      type: string
+                    redirect_uri:
+                      type: string
+  "/oauth2_tokens/{token}":
+    parameters:
+    - name: token
+      in: path
+      type: string
+      required: true
+    get:
+      description: Lookup an oauth2 token
+      responses:
+        '200':
+          description: The token was found
+          schema:
+            type: object
+            properties:
+              expires_in:
+                type: integer
+              authenticated_userid:
+                type: string
+              id:
+                type: string
+              credential_id:
+                type: string
+              created_at:
+                type: integer
+              refresh_token:
+                type: string
+              token_type:
+                type: string
+              access_token:
+                type: string
+              scope:
+                type: string
+definitions:
+  Consumer:
+    description: "Someone that interacts with the API"
+    type: object
+    properties:
+      id:
+        type: string
+        example: "4d924084-1adb-40a5-c042-63b19db421d1"
+      custom_id:
+        type: string
+        example: "abc123"
+      created_at:
+        type: integer
+        example: 1422386534
+  APIKey:
+    description: "APIKey belonging to a consumer"
+    type: object
+    properties:
+      consumer_id:
+        type: string
+        example: "876bf719-8f18-4ce5-cc9f-5b5af6c36007"
+      created_at:
+        type: integer
+        example: 1443371053000
+      id:
+        type: string
+        example: "62a7d3b7-b995-49f9-c9c8-bac4d781fb59"
+      key:
+        type: string
+        example: "62eb165c070a41d5c1b58d9d3d725ca1"
